@@ -17,6 +17,7 @@
        */
       'loadingScreen',
       'hvInput',
+      'hvSpinner',
 
       /**
        * Third-party modules
@@ -32,6 +33,6 @@
    */
   setTimeout(function() {
     angular.bootstrap(document, ['hauseVierundzwanzigApp']);
-  }, 500);
+  }, 100);
 
 })();

@@ -4,7 +4,8 @@
   /** @ngInject */
   var hvInput = {
     bindings: {
-      placeholder: '@'
+      placeholder: '@',
+      setDisabled: '<'
     },
     controller: function ($scope) {
       this.artist = '';

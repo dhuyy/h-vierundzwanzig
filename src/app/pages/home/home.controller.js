@@ -7,10 +7,43 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($scope) {
+  function HomeController($scope, ArtistService) {
+    var vm = this;
+
+    vm.isLoadingArtist = false;
 
     $scope.$on('onSearchArtist', function(event, args) {
-      console.log(args);
+      vm.isLoadingArtist = true;
+
+      _getArtistDetails(args);
     });
+
+    function _getArtistDetails(name) {
+      ArtistService.getArtistDetails(name)
+        .then(function(response) {
+          console.log(response);
+
+          _getArtistEvents(name);
+        })
+        .catch(function() {
+
+        });
+    }
+
+    function _getArtistEvents(name) {
+      ArtistService.getArtistEvents(name)
+        .then(function(response) {
+          console.log(response);
+
+          _getArtistVideos(name);
+        })
+        .catch(function() {
+
+        });
+    }
+
+    function _getArtistVideos(name) {
+      vm.isLoadingArtist = false;
+    }
   }
 })();

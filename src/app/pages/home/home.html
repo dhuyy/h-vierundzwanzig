@@ -6,6 +6,7 @@
     </h1>
   </div>
   <div class="home-input">
-    <hv-input placeholder="Artist name"></hv-input>
+    <hv-input placeholder="Artist name" set-disabled="vm.isLoadingArtist"></hv-input>
+    <hv-spinner is-loading="vm.isLoading"></hv-spinner>
   </div>
 </div>
