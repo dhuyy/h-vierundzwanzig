@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('loadingScreen')
+    .module('loadingScreen', [])
     .directive('loadingScreen', loadingScreen);
 
   /** @ngInject */

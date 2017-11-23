@@ -1,0 +1,9 @@
+<form ng-submit="$ctrl.onSearchArtist($event)" novalidate>
+  <span class="input input--haruki">
+    <input class="input__field input__field--haruki" type="text" id="input-1" ng-model="$ctrl.artist" />
+    <label class="input__label input__label--haruki" for="input-1"
+           ng-class="{ 'input--filled': $ctrl.artist != '' }">
+      <span class="input__label-content input__label-content--haruki">{{ $ctrl.placeholder }}</span>
+    </label>
+  </span>
+</form>

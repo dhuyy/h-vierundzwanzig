@@ -7,9 +7,10 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController() {
-    var vm = this;
+  function HomeController($scope) {
 
-    vm.app = 'Hause Vierundzwanzig App';
+    $scope.$on('onSearchArtist', function(event, args) {
+      console.log(args);
+    });
   }
 })();

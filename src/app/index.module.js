@@ -16,6 +16,7 @@
        * Project modules
        */
       'loadingScreen',
+      'hvInput',
 
       /**
        * Third-party modules
@@ -31,6 +32,6 @@
    */
   setTimeout(function() {
     angular.bootstrap(document, ['hauseVierundzwanzigApp']);
-  }, 2000);
+  }, 500);
 
 })();
