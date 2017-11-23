@@ -41,7 +41,20 @@
     }
 
     function getArtistVideos(name) {
-
+      return $http({
+        method: 'GET',
+        url: YOUTUBE_API.BASE_URL,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        params: {
+          key: YOUTUBE_API.API_KEY,
+          q: name,
+          part: 'snippet',
+          order: 'relevance',
+          maxResults: 10
+        }
+      })
     }
   }
 })();

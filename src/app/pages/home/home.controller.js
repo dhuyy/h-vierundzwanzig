@@ -21,7 +21,7 @@
     function _getArtistDetails(name) {
       ArtistService.getArtistDetails(name)
         .then(function(response) {
-          console.log(response);
+          console.log('Details', response.data);
 
           _getArtistEvents(name);
         })
@@ -33,7 +33,7 @@
     function _getArtistEvents(name) {
       ArtistService.getArtistEvents(name)
         .then(function(response) {
-          console.log(response);
+          console.log('Events', response.data);
 
           _getArtistVideos(name);
         })
@@ -43,7 +43,15 @@
     }
 
     function _getArtistVideos(name) {
-      vm.isLoadingArtist = false;
+      ArtistService.getArtistVideos(name)
+        .then(function(response) {
+          console.log('Videos', response.data.items);
+
+          vm.isLoadingArtist = false;
+        })
+        .catch(function() {
+
+        });
     }
   }
 })();

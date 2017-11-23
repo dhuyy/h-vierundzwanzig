@@ -4,7 +4,7 @@
   /** @ngInject */
   var hvSpinner = {
     bindings: {
-      isLoadingArtist: '<'
+      isLoading: '<'
     },
     templateUrl: 'app/components/hvSpinner/hvSpinner.html'
   };
