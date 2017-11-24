@@ -4,4 +4,8 @@
   margin: 0 auto;
   background: url('../../../assets/images/spinner.gif');
   background-size: 100%;
+  
+  &.invisible {
+    visibility: hidden;
+  }
 }

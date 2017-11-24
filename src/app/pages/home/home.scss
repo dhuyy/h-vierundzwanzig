@@ -14,7 +14,7 @@
     right: 10px;
   }
   
-  .home-title {
+  .title {
     flex: 2;
   
     @media (max-width: 767px) {
@@ -32,6 +32,10 @@
       font-size: 2.3em;
       font-weight: 800;
       line-height: 1;
+  
+      @media (min-width: 768px) {
+        margin-top: 80px;
+      }
       
       span {
         display: block;
@@ -43,16 +47,64 @@
     }
   }
   
-  .home-input {
+  .input {
     flex: 3;
+  
     
     @media (max-width: 767px) {
-      margin-top: 20px;
+      margin-top: 30px;
       align-items: center;
     }
   
     @media (min-width: 768px) {
       align-items: flex-start;
+    }
+  
+    .last-search {
+      font-family: 'Raleway', Arial, sans-serif;
+      display: flex;
+  
+      @media (min-width: 768px) {
+        margin-top: 60px;
+        flex-direction: column;
+      }
+  
+      > .title {
+        font-weight: normal;
+        letter-spacing: -2px;
+        justify-content: center;
+        margin-bottom: 10px;
+        margin-top: 0;
+        color: #c3c8cd;
+        font-size: 22px;
+      }
+  
+      .last-artist {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        @media (max-width: 767px) {
+          margin: 0 auto;
+          margin-top: 30px;
+        }
+    
+        > a {
+          text-decoration: none;
+          
+          .last-search-thumb {
+            width: 50px;
+            height: 50px;
+            margin-right: 5px;
+          }
+  
+          .last-search-name {
+            font-weight: 800;
+            color: #404d5b;
+            font-size: 16px;
+          }
+        }
+      }
     }
   }
 }

@@ -2,14 +2,23 @@
   <a class="home24-logo" href="http://www.home24.com" target="_blank">
     <img src="../../../assets/images/home24_logo.png" alt="Home24 Logo">
   </a>
-  <div class="home-title">
+  <div class="title">
     <h1>
       Artist Finder
       <span>Here you can find everything about any artist.</span>
     </h1>
   </div>
-  <div class="home-input">
+  <div class="input">
     <hv-input placeholder="Artist name" set-disabled="vm.isLoadingArtist"></hv-input>
     <hv-spinner is-loading="vm.isLoadingArtist"></hv-spinner>
+    <div class="last-search" ng-if="vm.lastSearch != null">
+      <span class="title hidden-xs">LAST SEARCH</span>
+      <div class="last-artist">
+        <a href="/#/detail">
+          <img class="last-search-thumb" ng-src="{{ vm.lastSearch.thumb }}" alt="Artist Thumbnail">
+          <span class="last-search-name">{{ vm.lastSearch.name }}</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

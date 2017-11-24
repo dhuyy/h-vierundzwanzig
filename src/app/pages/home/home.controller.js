@@ -10,8 +10,21 @@
   function HomeController($scope, $state, localStorageService, ArtistService) {
     var vm = this;
 
+    vm.lastSearch = null;
     vm.currentArtist = {};
     vm.isLoadingArtist = false;
+
+    function _onInit() {
+      var artist = localStorageService.get('artist');
+
+      if (artist) {
+        vm.lastSearch = {
+          thumb: artist.details.thumb_url,
+          name: artist.details.name
+        }
+      }
+    }
+    _onInit();
 
     $scope.$on('onSearchArtist', function(event, args) {
       vm.isLoadingArtist = true;
