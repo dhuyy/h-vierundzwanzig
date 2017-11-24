@@ -15,10 +15,11 @@
 
     vm.MAX_VIDEOS_RESULTS = 30;
 
+    vm.onInit = onInit;
     vm.backToHome = backToHome;
     vm.showMoreVideos = showMoreVideos;
 
-    function _onInit() {
+    function onInit() {
       var artist = localStorageService.get('artist');
 
       if (!artist)
@@ -30,7 +31,6 @@
         videos: artist.videos.slice(0, NUMBER_VIDEOS_TO_LOAD)
       };
     }
-    _onInit();
 
     function backToHome() {
       $state.go('home');
