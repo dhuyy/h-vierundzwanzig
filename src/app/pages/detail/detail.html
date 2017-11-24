@@ -28,19 +28,21 @@
       <h4 ng-if="vm.artist.events.length == 0">NO EVENTS AVAILABLE</h4>
       <div class="events-wrapper">
         <div class="event" ng-repeat="event in vm.artist.events">
-          <div class="event-wrapper">
+          <a ng-href="{{ event.offers[0].url }}" target="_blank">
+            <div class="event-wrapper">
             <span class="venue">
               {{ event.venue.name }}
             </span>
-            <div>
+              <div>
               <span class="date">
                 {{ event.datetime | date:'MM/dd/yyyy' }}
               </span>
-              <span class="location">
+                <span class="location">
                 {{ event.venue.city }} - {{ event.venue.country }}
               </span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
