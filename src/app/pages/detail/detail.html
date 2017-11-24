@@ -64,5 +64,10 @@
         <span class="channel">{{ video.snippet.channelTitle }}</span>
       </div>
     </div>
+    <button class="btn bnt-lg btn-default btn-show-more"
+            ng-click="vm.showMoreVideos()"
+            ng-hide="vm.artist.videos.length == vm.MAX_VIDEOS_RESULTS">
+      Show More
+    </button>
   </div>
 </div>

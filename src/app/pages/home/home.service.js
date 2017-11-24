@@ -53,7 +53,7 @@
           part: 'snippet',
           order: 'relevance',
           type: 'video',
-          maxResults: 10
+          maxResults: 30
         }
       })
     }

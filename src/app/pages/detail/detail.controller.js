@@ -9,21 +9,40 @@
   /** @ngInject */
   function DetailController($state, localStorageService) {
     var vm = this;
-
-    vm.backToHome = backToHome;
+    var NUMBER_VIDEOS_TO_LOAD = 10;
 
     vm.artist = null;
 
+    vm.MAX_VIDEOS_RESULTS = 30;
+
+    vm.backToHome = backToHome;
+    vm.showMoreVideos = showMoreVideos;
+
     function _onInit() {
-      if (!localStorageService.get('artist'))
+      var artist = localStorageService.get('artist');
+
+      if (!artist)
         $state.go('home');
 
-      vm.artist = localStorageService.get('artist');
+      vm.artist = {
+        details: artist.details,
+        events: artist.events,
+        videos: artist.videos.slice(0, NUMBER_VIDEOS_TO_LOAD)
+      };
     }
     _onInit();
 
     function backToHome() {
       $state.go('home');
+    }
+
+    function showMoreVideos() {
+      var visibleVideos = vm.artist['videos'];
+      var cachedVideos = localStorageService.get('artist')['videos'];
+
+      vm.artist['videos'] = visibleVideos.concat(
+        cachedVideos.slice(visibleVideos.length, visibleVideos.length + NUMBER_VIDEOS_TO_LOAD)
+      );
     }
   }
 })();
