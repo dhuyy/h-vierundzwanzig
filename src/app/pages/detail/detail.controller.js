@@ -9,7 +9,7 @@
   /** @ngInject */
   function DetailController($state, localStorageService) {
     var vm = this;
-    var NUMBER_VIDEOS_TO_LOAD = 10;
+    var NUMBER_VIDEOS_TO_LOAD = 7;
 
     vm.artist = null;
 
