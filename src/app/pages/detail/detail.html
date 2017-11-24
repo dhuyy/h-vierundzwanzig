@@ -2,13 +2,16 @@
   <div class="artist">
     <div class="details">
       <div class="picture">
-        <img src="https://s3.amazonaws.com/bit-photos/thumb/6015420.jpeg" alt="Artist Picture">
+        <img ng-src="{{ vm.artist.details.thumb_url }}" alt="Artist Picture">
       </div>
       <div class="information">
-        <h1 class="name">Taylor Swift</h1>
+        <h1 class="name">{{ vm.artist.details.name }}</h1>
         <div class="facebook">
           <img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-24.png" alt="Facebook Icon" class="icon">
-          <span class="url">@TaylorSwift</span>
+          <span ng-if="vm.artist.details.facebook_page_url == ''"
+                class="url">No facebok profile.</span>
+          <span ng-if="vm.artist.details.facebook_page_url != ''"
+                class="url">{{ vm.artist.details.facebook_page_url }}</span>
         </div>
       </div>
     </div>
@@ -16,92 +19,17 @@
     <div class="events">
       <h4>EVENTS</h4>
       <div class="events-wrapper">
-        <div class="event">
+        <div class="event" ng-repeat="event in vm.artist.events">
           <div class="event-wrapper">
             <span class="venue">
-              SAP Center at San Jose
+              {{ event.venue.name }}
             </span>
             <div>
               <span class="date">
-                10/01/2018
+                {{ event.datetime | date:'MM/dd/yyyy' }}
               </span>
               <span class="location">
-                San Jose - CA
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-wrapper">
-            <span class="venue">
-              SAP Center at San Jose
-            </span>
-            <div>
-              <span class="date">
-                10/01/2018
-              </span>
-              <span class="location">
-                San Jose - CA
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-wrapper">
-            <span class="venue">
-              SAP Center at San Jose
-            </span>
-            <div>
-              <span class="date">
-                10/01/2018
-              </span>
-              <span class="location">
-                San Jose - CA
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-wrapper">
-            <span class="venue">
-              SAP Center at San Jose
-            </span>
-            <div>
-              <span class="date">
-                10/01/2018
-              </span>
-              <span class="location">
-                San Jose - CA
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-wrapper">
-            <span class="venue">
-              SAP Center at San Jose
-            </span>
-            <div>
-              <span class="date">
-                10/01/2018
-              </span>
-              <span class="location">
-                San Jose - CA
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="event">
-          <div class="event-wrapper">
-            <span class="venue">
-              SAP Center at San Jose
-            </span>
-            <div>
-              <span class="date">
-                10/01/2018
-              </span>
-              <span class="location">
-                San Jose - CA
+                {{ event.venue.city }} - {{ event.venue.country }}
               </span>
             </div>
           </div>
@@ -111,22 +39,14 @@
   </div>
   <hr class="visible-xs-block">
   <div class="artist-videos">
-    <div class="video">
+    <div class="video" ng-repeat="video in vm.artist.videos">
       <div class="thumb">
-        <img src="https://i.ytimg.com/vi/3tmd-ClpJxA/mqdefault.jpg" alt="">
+        <img ng-src="{{ video.snippet.thumbnails.medium.url }}"
+             alt="Youtube Video Thumbnail">
       </div>
       <div class="name">
-        <span class="title">Taylor Swift - Look What You Made Me Do</span>
-        <span class="channel">TaylorSwiftVEVO</span>
-      </div>
-    </div>
-    <div class="video">
-      <div class="thumb">
-        <img src="https://i.ytimg.com/vi/3tmd-ClpJxA/mqdefault.jpg" alt="">
-      </div>
-      <div class="name">
-        <span class="title">Taylor Swift - Look What You Made Me Do</span>
-        <span class="channel">TaylorSwiftVEVO</span>
+        <span class="title">{{ video.snippet.title }}</span>
+        <span class="channel">{{ video.snippet.channelTitle }}</span>
       </div>
     </div>
   </div>

@@ -129,7 +129,7 @@
           
           .event-wrapper {
             width: 145px;
-            height: 105px;
+            height: 107px;
             position: absolute;
             top: 0;
             left: 0;
@@ -143,12 +143,14 @@
               font-size: 20px;
               text-align: center;
               letter-spacing: -1.5px;
-              margin-top: 8px;
+              line-height: 1;
             }
             
             > div {
               display: flex;
-              justify-content: space-between;
+              flex-direction: column;
+              text-align: center;
+              line-height: 1.2;
               
               .date {
                 font-size: 10px;
@@ -186,6 +188,7 @@
         width: 168px;
         height: 94px;
         margin-right: 5px;
+        background-color: black;
         
         > img {
           height: 100%;

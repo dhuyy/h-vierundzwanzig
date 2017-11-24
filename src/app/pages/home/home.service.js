@@ -52,6 +52,7 @@
           q: name,
           part: 'snippet',
           order: 'relevance',
+          type: 'video',
           maxResults: 10
         }
       })
