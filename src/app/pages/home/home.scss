@@ -6,6 +6,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  
+  .home24-logo {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
   
   .home-title {
     height: 40vh;
