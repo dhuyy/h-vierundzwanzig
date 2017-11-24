@@ -7,7 +7,7 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($scope, ArtistService) {
+  function HomeController($scope, $state, ArtistService) {
     var vm = this;
 
     vm.isLoadingArtist = false;
@@ -46,6 +46,8 @@
       ArtistService.getArtistVideos(name)
         .then(function(response) {
           console.log('Videos', response.data.items);
+
+          $state.go('detail');
 
           vm.isLoadingArtist = false;
         })

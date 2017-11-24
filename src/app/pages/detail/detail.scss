@@ -1,0 +1,212 @@
+.detail-page {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 50px;
+  
+  @media (max-width: 767px) {
+    width: 90%;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 768px) {
+    width: 80%;
+  }
+  
+  .artist {
+    flex: 5;
+    flex-direction: column;
+    
+    .details {
+      display: flex;
+  
+      @media (max-width: 767px) {
+        flex-direction: column;
+      }
+      
+      .picture {
+        height: 183px;
+        
+        > img {
+          height: 100%;
+        }
+      }
+      
+      .information {
+        width: 100%;
+        font-family: 'Raleway', Arial, sans-serif;
+        
+        .name {
+          color: #404d5b;
+          font-size: 2.3em;
+          font-weight: 800;
+          margin: 10px;
+        }
+        
+        .facebook {
+          margin: 10px;
+          display: flex;
+          align-items: center;
+          
+          .icon {
+            width: 24px;
+          }
+          
+          .url {
+            margin-left: 5px;
+            color: #404d5b;
+            font-weight: normal;
+          }
+        }
+      }
+  
+      @media (max-width: 767px) {
+        .picture {
+          margin: 0 auto;
+        }
+  
+        .information {
+          text-align: center;
+          
+          .name {
+            margin: 15px;
+          }
+          
+          .facebook {
+            justify-content: center;
+            margin: 15px;
+          }
+        }
+      }
+    }
+    
+    hr {
+      border-color: #dbd1d1;
+      margin: 40px 0;
+    }
+    
+    .events {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Raleway', Arial, sans-serif;
+      
+      > h4 {
+        font-weight: normal;
+        margin: 0 0 20px;
+        letter-spacing: -2px;
+  
+        @media (max-width: 767px) {
+          text-align: center;
+        }
+      }
+      
+      .events-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+  
+        @media (max-width: 767px) {
+          justify-content: center;
+        }
+        
+        .event {
+          width: 220px;
+          height: 115px;
+          background: url('../../../assets/images/ticket.png') no-repeat;
+          background-size: 100%;
+          font-family: 'Raleway', Arial, sans-serif;
+          font-weight: normal;
+          display: flex;
+          flex-direction: column;
+          padding: 5px;
+          color: whitesmoke;
+          text-transform: uppercase;
+          position: relative;
+          margin-right: 15px;
+          margin-bottom: 15px;
+  
+          @media (max-width: 767px) {
+            margin-right: 0;
+          }
+          
+          .event-wrapper {
+            width: 145px;
+            height: 105px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 5px;
+            margin-left: 23px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            .venue {
+              font-size: 20px;
+              text-align: center;
+              letter-spacing: -1.5px;
+              margin-top: 8px;
+            }
+            
+            > div {
+              display: flex;
+              justify-content: space-between;
+              
+              .date {
+                font-size: 10px;
+              }
+  
+              .location {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  hr.visible-xs-block {
+    border-color: #dbd1d1;
+    margin: 25px 0 40px;
+  }
+  
+  .artist-videos {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+  
+    @media (min-width: 768px) {
+      padding-left: 48px;
+    }
+    
+    .video {
+      display: flex;
+      margin-bottom: 15px;
+      
+      .thumb {
+        width: 168px;
+        height: 94px;
+        margin-right: 5px;
+        
+        > img {
+          height: 100%;
+        }
+      }
+      
+      .name {
+        display: flex;
+        flex-direction: column;
+  
+        .title {
+          font-weight: 800;
+          line-height: 1.2;
+        }
+  
+        .channel {
+          color: #777777;
+          font-size: 12px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
