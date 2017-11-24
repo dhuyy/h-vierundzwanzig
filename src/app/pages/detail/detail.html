@@ -1,4 +1,8 @@
 <div class="detail-page">
+  <div class="back-button" ng-click="vm.backToHome()">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <span>Back</span>
+  </div>
   <div class="artist">
     <div class="details">
       <div class="picture">
@@ -17,7 +21,8 @@
     </div>
     <hr>
     <div class="events">
-      <h4>EVENTS</h4>
+      <h4 ng-if="vm.artist.events.length > 0">EVENTS</h4>
+      <h4 ng-if="vm.artist.events.length == 0">NO EVENTS AVAILABLE</h4>
       <div class="events-wrapper">
         <div class="event" ng-repeat="event in vm.artist.events">
           <div class="event-wrapper">
@@ -41,11 +46,15 @@
   <div class="artist-videos">
     <div class="video" ng-repeat="video in vm.artist.videos">
       <div class="thumb">
-        <img ng-src="{{ video.snippet.thumbnails.medium.url }}"
-             alt="Youtube Video Thumbnail">
+        <a ng-href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
+          <img ng-src="{{ video.snippet.thumbnails.medium.url }}"
+               alt="Youtube Video Thumbnail">
+        </a>
       </div>
       <div class="name">
-        <span class="title">{{ video.snippet.title }}</span>
+        <a class="title" ng-href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
+          {{ video.snippet.title }}
+        </a>
         <span class="channel">{{ video.snippet.channelTitle }}</span>
       </div>
     </div>

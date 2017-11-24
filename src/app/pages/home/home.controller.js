@@ -29,7 +29,6 @@
       ArtistService.getArtistDetails(name)
         .then(function(response) {
           vm.currentArtist['details'] = response.data;
-          console.log('Details', response.data);
 
           _getArtistEvents(name);
         })
@@ -42,7 +41,6 @@
       ArtistService.getArtistEvents(name)
         .then(function(response) {
           vm.currentArtist['events'] = response.data;
-          console.log('Events', response.data);
 
           _getArtistVideos(name);
         })
@@ -55,12 +53,10 @@
       ArtistService.getArtistVideos(name)
         .then(function(response) {
           vm.currentArtist['videos'] = response.data.items;
-          console.log('Videos', response.data.items);
-
-          localStorageService.set('artist', vm.currentArtist);
-          $state.go('detail');
 
           vm.isLoadingArtist = false;
+          localStorageService.set('artist', vm.currentArtist);
+          $state.go('detail');
         })
         .catch(function() {
 

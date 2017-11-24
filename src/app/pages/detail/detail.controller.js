@@ -7,8 +7,10 @@
     .controller('DetailController', DetailController);
 
   /** @ngInject */
-  function DetailController(localStorageService) {
+  function DetailController($state, localStorageService) {
     var vm = this;
+
+    vm.backToHome = backToHome;
 
     vm.artist = null;
 
@@ -16,5 +18,11 @@
       vm.artist = localStorageService.get('artist');
     }
     _onInit();
+
+    function backToHome() {
+      localStorageService.remove('artist');
+
+      $state.go('home');
+    }
   }
 })();

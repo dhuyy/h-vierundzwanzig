@@ -1,7 +1,45 @@
 .detail-page {
+  width: 90%;
   display: flex;
   margin: 0 auto;
-  padding-top: 50px;
+  position: relative;
+  padding-top: 75px;
+  
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    display: flex;
+    align-items: center;
+  
+    @media (max-width: 767px) {
+      width: 76px;
+      left: calc(50% - 38px);
+    }
+    
+    i {
+      color: #2fa0ec;
+      font-size: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: all .1s linear;
+    }
+    
+    &:hover, &:focus {
+      i {
+        color: #404d5b;
+      }
+    }
+    
+    span {
+      font-family: 'Raleway', Arial, sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: #404d5b;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+  }
   
   @media (max-width: 767px) {
     width: 90%;
@@ -9,11 +47,16 @@
   }
   
   @media (min-width: 768px) {
-    width: 80%;
+    width: 85%;
   }
   
   .artist {
-    flex: 5;
+    @media (min-width: 768px) {
+      flex: 0 0 705px;
+      max-width: 705px;
+    }
+    
+    display: flex;
     flex-direction: column;
     
     .details {
@@ -24,7 +67,9 @@
       }
       
       .picture {
+        width: 183px;
         height: 183px;
+        margin-right: 10px;
         
         > img {
           height: 100%;
@@ -80,6 +125,10 @@
     }
     
     hr {
+      @media (min-width: 768px) {
+        width: calc(100% - 15px);
+      }
+      
       border-color: #dbd1d1;
       margin: 40px 0;
     }
@@ -172,7 +221,6 @@
   }
   
   .artist-videos {
-    flex: 3;
     display: flex;
     flex-direction: column;
   
@@ -187,10 +235,10 @@
       .thumb {
         width: 168px;
         height: 94px;
-        margin-right: 5px;
+        margin-right: 8px;
         background-color: black;
         
-        > img {
+        img {
           height: 100%;
         }
       }
@@ -202,6 +250,8 @@
         .title {
           font-weight: 800;
           line-height: 1.2;
+          text-decoration: none;
+          color: #404d5b;
         }
   
         .channel {
