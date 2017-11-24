@@ -22,6 +22,7 @@
     function _getArtistDetails(name) {
       ArtistService.getArtistDetails(name)
         .then(function(response) {
+          console.log(response.data);
           vm.currentArtist['details'] = response.data;
 
           _getArtistEvents(name);
@@ -34,7 +35,6 @@
     function _getArtistEvents(name) {
       ArtistService.getArtistEvents(name)
         .then(function(response) {
-          console.log(response.data);
           vm.currentArtist['events'] = response.data;
 
           _getArtistVideos(name);
