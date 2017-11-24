@@ -11,11 +11,14 @@
       <div class="information">
         <h1 class="name">{{ vm.artist.details.name }}</h1>
         <div class="facebook">
-          <img src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-24.png" alt="Facebook Icon" class="icon">
+          <img src="../../../assets/images/facebook_icon.png"
+               alt="Facebook Icon" class="icon">
           <span ng-if="vm.artist.details.facebook_page_url == ''"
                 class="url">No facebok profile.</span>
-          <span ng-if="vm.artist.details.facebook_page_url != ''"
-                class="url">{{ vm.artist.details.facebook_page_url }}</span>
+          <a target="_blank" ng-if="vm.artist.details.facebook_page_url != ''"
+             ng-href="{{ vm.artist.details.facebook_page_url }}" class="url">
+            {{ vm.artist.details.facebook_page_url | facebookUrl }}
+          </a>
         </div>
       </div>
     </div>
@@ -44,15 +47,16 @@
   </div>
   <hr class="visible-xs-block">
   <div class="artist-videos">
+    <h4>RELATED VIDEOS</h4>
     <div class="video" ng-repeat="video in vm.artist.videos">
       <div class="thumb">
-        <a ng-href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
+        <a target="_blank" ng-href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
           <img ng-src="{{ video.snippet.thumbnails.medium.url }}"
                alt="Youtube Video Thumbnail">
         </a>
       </div>
       <div class="name">
-        <a class="title" ng-href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
+        <a target="_blank" class="title" ng-href="https://www.youtube.com/watch?v={{ video.id.videoId }}">
           {{ video.snippet.title }}
         </a>
         <span class="channel">{{ video.snippet.channelTitle }}</span>

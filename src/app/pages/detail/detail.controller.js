@@ -15,13 +15,14 @@
     vm.artist = null;
 
     function _onInit() {
+      if (!localStorageService.get('artist'))
+        $state.go('home');
+
       vm.artist = localStorageService.get('artist');
     }
     _onInit();
 
     function backToHome() {
-      localStorageService.remove('artist');
-
       $state.go('home');
     }
   }

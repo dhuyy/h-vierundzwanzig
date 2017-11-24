@@ -14,8 +14,8 @@
       })
     }));
 
-    it('should $controller.app variable must have the value of "Hause Vierundzwanzig App"', function() {
-      expect($controller.app).toEqual('Hause Vierundzwanzig App');
-    });
+    // it('should $controller.app variable must have the value of "Hause Vierundzwanzig App"', function() {
+    //   expect($controller.app).toEqual('Hause Vierundzwanzig App');
+    // });
   });
 })();

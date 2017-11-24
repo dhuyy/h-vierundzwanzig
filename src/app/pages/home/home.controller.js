@@ -13,12 +13,6 @@
     vm.currentArtist = {};
     vm.isLoadingArtist = false;
 
-    function _onInit() {
-      if (localStorageService.get('artist'))
-        $state.go('detail');
-    }
-    _onInit();
-
     $scope.$on('onSearchArtist', function(event, args) {
       vm.isLoadingArtist = true;
 
