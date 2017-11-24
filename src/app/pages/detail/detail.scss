@@ -48,12 +48,18 @@
   
   @media (min-width: 768px) {
     width: 85%;
+    justify-content: space-between;
   }
   
   .artist {
-    @media (min-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1829px) {
       flex: 0 0 705px;
       max-width: 705px;
+    }
+    
+    @media (min-width: 1830px) {
+      flex: 0 0 940px;
+      max-width: 940px;
     }
     
     display: flex;
@@ -146,7 +152,6 @@
   
         @media (max-width: 767px) {
           text-align: center;
-          margin: 0 0 30px;
         }
       }
       
@@ -174,7 +179,7 @@
           margin-right: 15px;
           margin-bottom: 15px;
           transition: all .2s linear;
-          opacity: 0.9;
+          opacity: 0.8;
           cursor: pointer;
           
           &:hover {
@@ -183,10 +188,6 @@
   
           > a {
             color: white;
-          }
-  
-          @media (max-width: 767px) {
-            margin-right: 0;
           }
           
           .event-wrapper {
@@ -209,6 +210,7 @@
             }
             
             > div {
+              font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
               display: flex;
               flex-direction: column;
               text-align: center;
@@ -237,6 +239,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    font-family: 'Raleway', Arial, sans-serif;
   
     @media (min-width: 768px) {
       padding-left: 48px;
@@ -273,6 +276,7 @@
         flex-direction: column;
   
         .title {
+          font-family: 'Raleway', Arial, sans-serif;
           font-weight: 800;
           line-height: 1.2;
           text-decoration: none;
@@ -288,6 +292,7 @@
     }
     
     .btn-show-more {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       border-radius: 0;
     }
   }
