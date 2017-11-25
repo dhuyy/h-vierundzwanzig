@@ -24,7 +24,7 @@
       expect($element.html()).not.toEqual(null);
     });
 
-    it('', function() {
+    it('$controller.onSearchArtist should call $rootScope.$broadcast("onSearchArtist")', function() {
       spyOn($rootScope, '$broadcast');
 
       $controller.onSearchArtist(
