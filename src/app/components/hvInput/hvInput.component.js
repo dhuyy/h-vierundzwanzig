@@ -7,7 +7,7 @@
       placeholder: '@',
       setDisabled: '<'
     },
-    controller: function ($scope) {
+    controller: function ($rootScope) {
       this.artist = '';
 
       this.onSearchArtist = onSearchArtist;
@@ -18,7 +18,7 @@
       function onSearchArtist(e) {
         e.preventDefault();
 
-        $scope.$emit('onSearchArtist', this.artist);
+        $rootScope.$broadcast('onSearchArtist', this.artist);
       }
     },
     templateUrl: 'app/components/hvInput/hvInput.html'

@@ -14,14 +14,9 @@
       localStorageService = _localStorageService_;
 
       $controller = _$controller_('DetailController', {
-        $scope: $rootScope.$new(),
-        $state: $state
+        $scope: $rootScope.$new()
       })
     }));
-
-    // it('', function() {
-    //
-    // });
 
     it('$controller.onInit() should init $controller.artist if localStorageService.get("artist") ' +
       'has value.', function() {
