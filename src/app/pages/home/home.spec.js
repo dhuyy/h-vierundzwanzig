@@ -2,30 +2,24 @@
   'use strict';
 
   /**
-   * Unit testing the HomeController.
+   * HomeController unit tests.
+   * Integration tests between HomeController and ArtistService
    */
-  describe('[HomeController]', function() {
-    var $controller, $rootScope, $q, localStorageService, ArtistService, artistDetailsDeferred,
-      artistEventsDeferred, artistVideosDeferred;
+  describe('[Home Page tests]', function() {
+    var $controller, $rootScope, $httpBackend, $state, localStorageService, BANDSINTOWN_API, YOUTUBE_API;
 
     beforeEach(module('hauseVierundzwanzigApp'));
-    beforeEach(inject(function(_$rootScope_, _$controller_, _$q_, _localStorageService_, _ArtistService_) {
+    beforeEach(inject(function(_$rootScope_, _$controller_, _$httpBackend_, _$state_, _localStorageService_,
+                               _BANDSINTOWN_API_, _YOUTUBE_API_) {
       $rootScope = _$rootScope_;
-      $q = _$q_;
-      ArtistService = _ArtistService_;
+      $httpBackend = _$httpBackend_;
+      $state = _$state_;
       localStorageService = _localStorageService_;
-
-      artistDetailsDeferred = $q.defer();
-      artistEventsDeferred = $q.defer();
-      artistVideosDeferred = $q.defer();
-
-      spyOn(ArtistService, 'getArtistDetails').and.returnValue(artistDetailsDeferred.promise);
-      spyOn(ArtistService, 'getArtistEvents').and.returnValue(artistEventsDeferred.promise);
-      spyOn(ArtistService, 'getArtistVideos').and.returnValue(artistVideosDeferred.promise);
+      BANDSINTOWN_API = _BANDSINTOWN_API_;
+      YOUTUBE_API = _YOUTUBE_API_;
 
       $controller = _$controller_('HomeController', {
-        $scope: $rootScope.$new(),
-        ArtistService: ArtistService
+        $scope: $rootScope.$new()
       })
     }));
 
@@ -33,7 +27,7 @@
     //
     // });
 
-    it('should assign an object to [$controller.lastSearch] if [localStorageService.get("artist")] ' +
+    it('$controller.onInit() should init $controller.lastSearch if localStorageService.get("artist") ' +
       'has a value.', function() {
       var mockedArtist = {
         details: {
@@ -53,7 +47,7 @@
       expect($controller.lastSearch).toEqual(expectedLastSearch);
     });
 
-    it('should keep [$ controller.lastSearch] null when [localStorageService.get ("artist")] is ' +
+    it('$controller.onInit() should keep $controller.lastSearch null when localStorageService.get("artist") is ' +
       'undefined.',function() {
       localStorageService.remove('artist');
 
@@ -62,86 +56,48 @@
       expect($controller.lastSearch).toEqual(null);
     });
 
-    it('should assign true to [$controller.isLoadingArtist] and call the [$controller.getArtistDetails()] method ' +
-      'when the event [onSearchArtist] is fired.', function() {
-      spyOn($controller, 'getArtistDetails');
+    it('$scope.$on("onSearchArtist") should request all the necessary data to populate the Details Page.', function() {
+      var artistName = 'Eminem';
 
-      $rootScope.$broadcast('onSearchArtist');
+      $rootScope.$broadcast('onSearchArtist', artistName);
+
+      $httpBackend.when('GET',
+        BANDSINTOWN_API['BASE_URL'].concat('/artists/', artistName, '?app_id=', BANDSINTOWN_API.APP_ID))
+        .respond(200, {
+          name: artistName
+        });
+
+      $httpBackend.when('GET',
+        BANDSINTOWN_API['BASE_URL'].concat('/artists/', artistName, '/events', '?app_id=', BANDSINTOWN_API.APP_ID))
+        .respond(200, [{
+          lineup: [artistName]
+        }]);
+
+      $httpBackend.when('GET',
+        YOUTUBE_API['BASE_URL'].concat('?key=', YOUTUBE_API.API_KEY, '&q=', artistName, '&part=snippet',
+          '&order=relevance', '&type=video', '&maxResults=30'))
+        .respond(200, {
+          items: [{
+            kind: 'youtube#video'
+          }]
+        });
 
       expect($controller.isLoadingArtist).toBe(true);
-      expect($controller.getArtistDetails).toHaveBeenCalled();
-    });
 
-    it('should assign [response.data] to [vm.currentArtist.details] and call [$controller.getArtistEvents()] when ' +
-      'the request to [ArtistService.getArtistDetails()] is successful;', function() {
-      var expectedArtistDetails = {
-        details: {
-          name: 'Eminem'
-        }
-      };
-
-      $controller.getArtistDetails();
-
-      artistDetailsDeferred.resolve({
-        data: {
-          details: {
-            name: 'Eminem'
-          }
-        }
-      });
-      $rootScope.$digest();
+      $httpBackend.flush();
 
       expect($controller.currentArtist.details).toEqual(jasmine.any(Object));
-      expect($controller.currentArtist.details).toEqual(expectedArtistDetails);
-
-      expect(ArtistService.getArtistEvents).toHaveBeenCalled();
-    });
-
-    it('should assign [response.data] to [vm.currentArtist.events] and call [$controller.getArtistVideos()] when ' +
-      'the request to [ArtistService.getArtistEvents()] is successful;', function() {
-      var expectedArtistEvents = [{
-        name: '<Bellagio Casino>'
-      }];
-
-      $controller.getArtistEvents();
-
-      artistEventsDeferred.resolve({
-        data: [{
-          name: '<Bellagio Casino>'
-        }]
-      });
-      $rootScope.$digest();
+      expect($controller.currentArtist.details.name).toEqual(artistName);
 
       expect($controller.currentArtist.events).toEqual(jasmine.any(Array));
-      expect($controller.currentArtist.events).toEqual(expectedArtistEvents);
-
-      expect(ArtistService.getArtistVideos).toHaveBeenCalled();
-    });
-
-    it('should assign [response.data.items] to [vm.currentArtist.videos], set [$controller.isLoadingArtist] to false, ' +
-      'store [$controller.currentArtist] in Local Storage through "artist" key and call [$state.go("detail")] when ' +
-      'the request to [ArtistService.getArtistVideos()] is successful;', function() {
-      var expectedArtistVideos = [{
-        id: 'rLicFoPtFA0',
-        title: 'Costa Gold - N.A.D.A B.O.M'
-      }];
-
-      $controller.getArtistVideos();
-
-      artistVideosDeferred.resolve({
-        data: {
-          items: [{
-            id: 'rLicFoPtFA0',
-            title: 'Costa Gold - N.A.D.A B.O.M'
-          }]
-        }
-      });
-      $rootScope.$digest();
+      expect($controller.currentArtist.events[0].lineup[0]).toEqual(artistName);
 
       expect($controller.currentArtist.videos).toEqual(jasmine.any(Array));
-      expect($controller.currentArtist.videos).toEqual(expectedArtistVideos);
-      expect($controller.isLoadingArtist).toEqual(false);
-      expect(ArtistService.getArtistVideos).toHaveBeenCalled();
+      expect($controller.currentArtist.videos[0].kind).toEqual('youtube#video');
+
+      expect($controller.isLoadingArtist).toBe(false);
+      expect(localStorageService.get('artist')).not.toBe(null);
+      expect($state.current.name).toEqual('detail');
     });
   });
 })();
