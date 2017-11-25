@@ -7,7 +7,7 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($scope, $state, $q, localStorageService, ArtistService) {
+  function HomeController($scope, $state, $q, ngNotify, localStorageService, ArtistService) {
     var vm = this;
 
     vm.lastSearch = null;
@@ -42,6 +42,10 @@
         vm.isLoadingArtist = false;
         localStorageService.set('artist', vm.currentArtist);
         $state.go('detail');
+      }).catch(function() {
+        ngNotify.set('Artist not found.', 'error');
+
+        vm.isLoadingArtist = false;
       });
     });
   }

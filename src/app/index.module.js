@@ -24,7 +24,7 @@
        */
       'LocalStorageModule',
       'ui.router',
-      'toastr'
+      'ngNotify'
     ]);
 
   /**
