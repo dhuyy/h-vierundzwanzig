@@ -23,12 +23,8 @@
       })
     }));
 
-    // it('', function() {
-    //
-    // });
-
     it('$controller.onInit() should init $controller.lastSearch if localStorageService.get("artist") ' +
-      'has a value.', function() {
+      'has value.', function() {
       var mockedArtist = {
         details: {
           thumb_url: '<thumb_url>',

@@ -22,14 +22,15 @@
     function onInit() {
       var artist = localStorageService.get('artist');
 
-      if (!artist)
+      if (!artist){
         $state.go('home');
-
-      vm.artist = {
-        details: artist.details,
-        events: artist.events,
-        videos: artist.videos.slice(0, NUMBER_VIDEOS_TO_LOAD)
-      };
+      } else {
+        vm.artist = {
+          details: artist.details,
+          events: artist.events,
+          videos: artist.videos.slice(0, NUMBER_VIDEOS_TO_LOAD)
+        };
+      }
     }
 
     function backToHome() {
