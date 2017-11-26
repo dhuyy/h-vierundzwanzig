@@ -33,6 +33,6 @@
    */
   setTimeout(function() {
     angular.bootstrap(document, ['hauseVierundzwanzigApp']);
-  }, 100);
+  }, 1500);
 
 })();
