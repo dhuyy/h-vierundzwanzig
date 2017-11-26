@@ -22,6 +22,24 @@
         $scope: $rootScope.$new()
       })
     }));
+    beforeEach(inject(function() {
+      var artistName = 'Eminem';
+
+      $httpBackend.when('GET',
+        BANDSINTOWN_API['BASE_URL'].concat('/artists/', artistName, '/events', '?app_id=', BANDSINTOWN_API.APP_ID))
+        .respond(200, [{
+          lineup: [artistName]
+        }]);
+
+      $httpBackend.when('GET',
+        YOUTUBE_API['BASE_URL'].concat('?key=', YOUTUBE_API.API_KEY, '&q=', artistName, '&part=snippet',
+          '&order=relevance', '&type=video', '&maxResults=30'))
+        .respond(200, {
+          items: [{
+            kind: 'youtube#video'
+          }]
+        });
+    }));
 
     it('$controller.onInit() should init $controller.lastSearch if localStorageService.get("artist") ' +
       'has value.', function() {
@@ -63,21 +81,6 @@
           name: artistName
         });
 
-      $httpBackend.when('GET',
-        BANDSINTOWN_API['BASE_URL'].concat('/artists/', artistName, '/events', '?app_id=', BANDSINTOWN_API.APP_ID))
-        .respond(200, [{
-          lineup: [artistName]
-        }]);
-
-      $httpBackend.when('GET',
-        YOUTUBE_API['BASE_URL'].concat('?key=', YOUTUBE_API.API_KEY, '&q=', artistName, '&part=snippet',
-          '&order=relevance', '&type=video', '&maxResults=30'))
-        .respond(200, {
-          items: [{
-            kind: 'youtube#video'
-          }]
-        });
-
       expect($controller.isLoadingArtist).toBe(true);
 
       $httpBackend.flush();
@@ -94,6 +97,22 @@
       expect($controller.isLoadingArtist).toBe(false);
       expect(localStorageService.get('artist')).not.toBe(null);
       expect($state.current.name).toEqual('detail');
+    });
+
+    it('$scope.$on("onSearchArtist") should show a ngNotify error when the request fail.', function() {
+      var artistName = 'Eminem';
+
+      $controller.isLoadingArtist = true;
+
+      $rootScope.$broadcast('onSearchArtist', artistName);
+
+      $httpBackend.when('GET',
+        BANDSINTOWN_API['BASE_URL'].concat('/artists/', artistName, '?app_id=', BANDSINTOWN_API.APP_ID))
+        .respond(400, {});
+
+      $httpBackend.flush();
+
+      expect($controller.isLoadingArtist).toBe(false);
     });
   });
 })();
