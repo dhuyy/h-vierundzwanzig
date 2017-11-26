@@ -20,7 +20,7 @@ Install Bower dependencies:
     $ bower install
     
     
-## Running the application (through localhost:3000)
+## Running the application (access through localhost:3000)
 
     $ gulp serve
     
