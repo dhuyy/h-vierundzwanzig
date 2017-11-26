@@ -1,5 +1,5 @@
 # Artist Finder [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bca3cab25c57459ba7871c5ca2e2ef4f)](https://www.codacy.com/app/dhuyy/hause-vierundzwanzig?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dhuyy/hause-vierundzwanzig&amp;utm_campaign=Badge_Grade)
-## AngularJS 1.5 app connected to BandsInDown API and Youtube API
+## AngularJS 1.5 + Bands In Town and Youtube API
 
 ## Installation
 
@@ -20,7 +20,7 @@ Install Bower dependencies:
     $ bower install
     
     
-## Running the application
+## Running the application (through localhost:3000)
 
     $ gulp serve
     
