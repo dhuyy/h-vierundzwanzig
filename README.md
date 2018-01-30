@@ -13,7 +13,7 @@ Access the folder:
 
 Install Node dependencies:
 
-    $ node install
+    $ npm install
     
 Install Bower dependencies:
 
